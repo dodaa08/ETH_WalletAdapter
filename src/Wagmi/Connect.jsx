@@ -9,7 +9,6 @@ import { useReadContract } from "wagmi";
 import { wagmiContractConfig } from "./wagmiContractConfig";
 import { ethers } from 'ethers';
 
-
 const queryClient = new QueryClient();
 
 const config = createConfig({
@@ -17,7 +16,6 @@ const config = createConfig({
   chains: [mainnet, seiDevnet],
   connectors: [metaMask(), injected()],
 });
-
 
 
 function ReadContract() {
@@ -31,6 +29,7 @@ function ReadContract() {
         ? ethers.utils.formatEther(balance.toString())
         : null;
 
+        console.log(formattedBalance);
     return (
         <div className="text-center py-10 text-2xl">
             {error ? (
@@ -45,8 +44,6 @@ function ReadContract() {
         </div>
     );
 }
-
-
 
 
 function WalletConnector() {
@@ -70,6 +67,8 @@ function WalletConnector() {
     </>
   );
 }
+
+
 
 function MyAddress() {
   const { address, isConnecting } = useAccount();
@@ -167,8 +166,6 @@ function Connect() {
 }
 
 export default Connect;
-
-
 
 
 // fix the balance fetch issue !!!
